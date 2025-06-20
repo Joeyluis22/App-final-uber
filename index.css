@@ -1,0 +1,944 @@
+/* Global Styles */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background-color: #FFFFFF; /* Updated to white */
+    color: #111111; /* Color de texto principal casi negro */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.4;
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    display: flex; /* For app-container centering if needed */
+    flex-direction: column; /* For app-container centering */
+}
+
+#app-container {
+    max-width: 480px;
+    margin: 0 auto;
+    background-color: #FFFFFF; /* Updated to white */
+    min-height: 100vh; /* Make app container take at least full viewport height */
+    width: 100%; /* Ensure app container takes full width up to max-width */
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden; /* Prevent horizontal scrollbars if something overflows temporarily */
+    transition: opacity 0.3s ease-out; /* Added for fade out */
+}
+
+.modal-drag-indicator {
+    width: 36px;
+    height: 4px;
+    background-color: #D1D5DB; /* Gris claro (Tailwind gray-300) */
+    border-radius: 2px;
+    margin: 8px auto 4px; /* Default margin, will be overridden for modal internal one */
+}
+
+/* General Icon Container - used for phone, details arrow etc. */
+.icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000; /* Default color for SVGs using currentColor */
+}
+
+
+/* Header */
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px; /* Márgenes laterales */
+    background-color: #ffffff; /* Fondo blanco */
+    height: 64px; /* Altura actualizada */
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06); /* Sombra añadida */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    flex-shrink: 0; /* Prevent header from shrinking */
+}
+
+.app-header h1 {
+    font-size: 22px; /* Tamaño de fuente actualizado */
+    font-weight: 600; /* Negrita */
+    line-height: 28px; /* Altura de línea actualizada */
+    letter-spacing: 0.01136em; /* Aproximadamente 0.25px tracking */
+    color: #111111;
+    margin: 0;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.header-button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #111111; /* For SVGs using currentColor */
+}
+
+/* Specifics for SVGs if they rely on currentColor via parent */
+/* The SVGs have direct stroke/fill, but this ensures consistency if that changes */
+.app-header button.header-icon-left {
+    color: #111111;
+}
+.app-header button.header-icon-right {
+    color: #111111;
+}
+
+.app-header button.header-icon-left svg {
+    /* stroke attribute is directly on SVG */
+}
+.app-header button.header-icon-right svg {
+    /* fill attribute is directly on SVG */
+}
+
+
+/* Content Area */
+.content-area {
+    padding: 0 16px; /* Padding lateral para contenido (px-4 equivalent) */
+    flex-grow: 1;
+    margin-top: 16px; /* Espacio antes de la primera tarjeta */
+}
+
+/* Restaurant Card - Updated to remove card visual style */
+.restaurant-card {
+    /* Removed: background-color, border-radius, box-shadow, padding */
+    margin-bottom: 16px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.restaurant-main-info .restaurant-title-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px; /* mb-2 (0.5rem) */
+}
+
+.restaurant-main-info h2 {
+    font-family: 'Uber Move', 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 28px; /* text-[28px] */
+    font-weight: 800; /* font-extrabold */
+    line-height: 34px; /* leading-[34px] */
+    letter-spacing: 0.0089em; /* tracking-[0.25px] */
+    margin: 0;
+    color: #111111;
+    word-break: break-word; /* Ensure long titles wrap */
+}
+
+.restaurant-main-info .phone-icon {
+    background-color: #E9ECEF; /* Light gray background */
+    border-radius: 50%;
+    width: 40px; /* Maintained size for the circular background */
+    height: 40px; /* Maintained size for the circular background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0; /* Prevent phone icon from shrinking */
+}
+
+.restaurant-main-info .phone-icon svg {
+    width: 24px; /* Increased from 20px */
+    height: 24px; /* Increased from 20px */
+    fill: #000000; /* Darkened to black from #111111 */
+}
+
+.restaurant-main-info .restaurant-address {
+    font-size: 16px; /* Updated from 14px */
+    color: #666666; /* Gris medio */
+    margin: 0;
+    line-height: 22px; /* Updated from 1.4 (was 19.6px for 14px font) */
+    /* word-break: break-word; Removed to improve natural text flow */
+}
+
+.company-note-subsection {
+    /* border-top: 1px solid #E0E0E0;  Removed this line */
+    margin-top: 12px; /* Adjusted from 16px to match my-3 spacing */
+    padding-top: 12px; /* Adjusted from 16px to match my-3 spacing */
+}
+
+.company-note-subsection h3 {
+    font-size: 16px;
+    font-weight: 700; /* Updated from 600 (bold) */
+    margin: 0 0 4px 0;
+    color: #111111;
+}
+
+.company-note-subsection p {
+    font-size: 15px; /* Updated from 14px */
+    color: #666666; /* Updated from #333333 (text-gray-600 like) */
+    margin: 0;
+    line-height: 1.4; /* Retained, now 21px for 15px font */
+    word-break: break-word;
+}
+
+/* Section Divider */
+.section-divider {
+    height: 8px;
+    background-color: #F0F0F0; /* Light gray color (similar to Tailwind gray-200) */
+    margin-top: 24px;
+    margin-bottom: 24px;
+    margin-left: -16px;  /* Counteracts content-area padding */
+    margin-right: -16px; /* Counteracts content-area padding */
+}
+
+
+/* Collection Title */
+.collection-title {
+    font-size: 22px; /* Updated from 18px */
+    font-weight: 600; /* Negrita */
+    margin: 24px 0 16px 0; /* margin-top: 24px, margin-bottom: 16px */
+    color: #000000;
+    padding: 0; /* No padding if content-area has it */
+    letter-spacing: -0.025em; /* Make letters closer */
+}
+
+/* Order Card */
+.order-card {
+    background-color: #FFFFFF; /* White background for the card interior */
+    border: 4px solid #F0F0F0; /* Thicker light gray border for "band" effect */
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Softer shadow, outside the border */
+    margin-bottom: 16px; /* Space below card before full-width-divider */
+    overflow: hidden; /* To ensure banner corners are clipped if needed */
+    padding: 16px; /* Global padding for the card */
+    min-height: 280px; /* Increased height */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Changed from space-between */
+    transition: padding 0.3s ease, min-height 0.3s ease, border-radius 0.3s ease, border 0.3s ease; /* Added transitions */
+}
+
+.order-card.is-verified {
+    border: 1px solid #E0E0E0; /* More subtle border */
+    padding: 12px; /* More compact */
+    min-height: auto; /* Let content dictate height */
+    border-radius: 16px; /* Slightly more rounded */
+}
+
+.order-card.is-verified .order-card-content {
+    margin-bottom: 0; /* Ensure no extra space when button is hidden */
+}
+
+
+.verification-banner {
+    display: inline-block; /* Shrink to fit content */
+    align-self: flex-start; /* Ensure banner does not stretch in flex column */
+    background-color: #FBBF24; /* Amarillo dorado más fuerte */
+    padding: 2px 8px; /* Vertical and horizontal padding */
+    border-radius: 4px; /* Slightly reduced radius for thinner banner */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-bottom: 8px; /* Added space after banner */
+}
+
+.verification-banner.verified { /* This class is no longer added by JS for this feature */
+    background-color: #D1FAE5;
+    color: #065F46;
+}
+.verification-banner.verified p {
+    color: #065F46;
+}
+
+
+.verification-banner p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500; /* Negrita ligera */
+    color: #000000; /* Texto negro */
+    line-height: 1.1; /* Reduced line-height to make banner thinner */
+    transition: color 0.3s ease;
+}
+
+.order-card-content {
+    margin-top: 0px; /* Removed space below banner (if visible) or top of card content */
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Align items to the center for vertical alignment */
+    margin-bottom: auto; /* Pushes verify-button down */
+}
+
+.customer-info {
+    flex-grow: 1;
+    min-width: 0; /* Allow customer info to shrink and wrap text */
+}
+
+.customer-name {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 6px 0;
+    color: #111111;
+    word-break: break-word;
+}
+
+.order-meta-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px; /* Space below this line if ETA is hidden */
+}
+
+.order-meta {
+    font-size: 16px;
+    color: #666666;
+    margin: 0; /* Margin handled by .order-meta-line or .order-eta */
+    line-height: 1.4;
+    word-break: break-word;
+    flex-grow: 1; /* Allow text to take available space */
+}
+
+.verified-checkmark-icon {
+    /* Inherits .icon-container styles for flex alignment */
+    flex-shrink: 0; /* Prevent shrinking */
+    margin-left: 8px; /* Add some space between text and icon */
+}
+
+.verified-checkmark-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+
+.order-eta {
+    font-size: 16px;
+    color: #666666;
+    margin: 0 0 4px 0; /* Provides spacing if it's the last element */
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+.details-arrow-icon {
+    flex-shrink: 0;
+    margin-left: 8px; /* Add some space if both icons were visible, or just for consistency */
+}
+.details-arrow-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: #333333;
+    /* margin-top: 2px; Removed as align-items: center on parent should handle this */
+}
+
+.verify-button {
+    display: block;
+    width: 100%;
+    height: 64px;
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 600;
+    padding: 20px 0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    margin: 16px 0 0 0; /* Top margin remains, bottom margin is now effectively 0 due to card padding */
+}
+
+.verify-button:hover {
+    background-color: #333;
+}
+
+/* Help and Support Section */
+.help-support-section {
+    /* padding: 0; Assuming content-area already provides side padding */
+    margin-top: 24px; /* Space above the "Ayuda y soporte" title */
+    margin-bottom: 16px; /* Space below the entire section before full-width-divider */
+}
+
+.help-support-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #000000;
+    margin: 0 0 12px 0; /* Top margin is handled by .help-support-section, bottom margin before the item */
+    letter-spacing: -0.025em; /* Consistent with .collection-title */
+}
+
+.support-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 0; /* Vertical padding, horizontal padding is handled by content-area */
+    cursor: pointer;
+    border-radius: 4px; /* Slight rounding for hover effect consistency */
+}
+
+.support-item:hover,
+.support-item:focus-visible {
+    background-color: #f0f0f0; /* Subtle hover/focus for clickability */
+}
+
+.support-item-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.support-item-icon.warning-icon svg {
+    /* SVG itself has fill="#000000" */
+}
+
+.support-item-text {
+    font-size: 16px;
+    color: #111111; /* Dark text */
+    margin-left: 12px; /* Space between warning icon and text */
+    flex-grow: 1; /* Allow text to take available space */
+    line-height: 1.4;
+}
+
+.support-item-icon.chevron-icon svg {
+    fill: #BDBDBD; /* Light gray (Material Grey 400) */
+}
+
+
+/* Full Width Dividers */
+.full-width-divider {
+    height: 8px;
+    background-color: #F0F0F0;
+    margin-bottom: 8px;
+    /* Adjusted margin to be relative to this element if help-support is shown */
+}
+
+.help-support-section + .full-width-divider {
+    margin-top: 8px; /* Ensure some space after help-support section if it's visible */
+}
+
+
+.thin-full-width-divider {
+    height: 1px;
+    background-color: #E0E0E0;
+}
+
+.large-empty-block {
+    height: 120px; /* Specific height for the large empty block */
+    background-color: #F0F0F0; /* Ensure light gray background */
+    margin-bottom: 0px; /* thin-full-width-divider will be directly below */
+    transition: height 0.3s ease; /* Optional: for smooth transition if needed */
+}
+
+
+/* Swipe Control Footer */
+.swipe-control-container {
+    padding: 12px 16px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+    background-color: #FFFFFF;
+    position: sticky;
+    bottom: 0;
+    z-index: 50;
+    flex-shrink: 0;
+    user-select: none; /* Prevent text selection during swipe */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Base styles for the swipe track (default/disabled appearance) */
+.swipe-track {
+    background-color: #F0F0F0; /* Light gray for disabled/default track background */
+    border-radius: 12px;
+    padding: 4px; /* Padding for handle and content alignment */
+    display: flex; /* Primarily for initial handle positioning if it's a flex item */
+    align-items: center;
+    height: 56px;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    position: relative; /* For absolute positioning of text and fill layers */
+    overflow: hidden; 
+}
+
+/* Common styles for text layers */
+.swipe-text {
+    box-sizing: border-box;
+    position: absolute;
+    left: 4px; /* Align with track padding */
+    right: 4px; /* Align with track padding */
+    top: 4px;   /* Align with track padding */
+    bottom: 4px;/* Align with track padding */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.0625rem; /* ~17px */
+    font-weight: 600;
+    white-space: nowrap;
+    pointer-events: none; /* Text should not interfere with drag */
+    transition: color 0.3s ease;
+}
+
+/* Base text layer (visible on light gray background) */
+.swipe-text-base-layer {
+    color: #A0A0A0; /* Disabled text color */
+    z-index: 1;
+}
+
+/* Progress fill layer (black background that grows) */
+.swipe-progress-fill {
+    position: absolute;
+    left: 4px; /* Align with track padding */
+    top: 4px;  /* Align with track padding */
+    bottom: 4px;/* Align with track padding */
+    height: 48px; /* Match handle height */
+    width: 0; /* Starts hidden, grows with JS */
+    background-color: #000000;
+    border-radius: 8px; /* Match inner track radius */
+    overflow: hidden; /* Important for containing the overlay text */
+    z-index: 2; /* Above base text, below handle */
+    transition: width 0.05s linear; /* Smooth fill expansion, or remove for instant */
+}
+
+/* Overlay text layer (white, visible on black progress fill) */
+.swipe-text-overlay-layer {
+    color: #FFFFFF;
+    /* Positioned absolutely within swipe-progress-fill */
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%; /* Takes full height of its parent (swipe-progress-fill) */
+    /* Width will be set by JS to match track's content width */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Other text properties (font-size, weight) inherited from .swipe-text or set explicitly if needed */
+}
+
+
+/* Base styles for the handle */
+.swipe-handle {
+    background-color: #FFFFFF; 
+    border: none;
+    border-radius: 8px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+    transition: background-color 0.3s ease, border-color 0.3s ease, fill 0.3s ease, transform 0.3s ease, opacity 0.3s ease; /* Added opacity transition */
+    flex-shrink: 0;
+    position: relative; /* Relative to its flex position in swipe-track */
+    z-index: 3; /* Above all other layers */
+}
+
+.swipe-handle svg {
+    width: 24px; 
+    height: 24px; 
+    fill: #BDBDBD; /* Medium-light gray arrow for disabled state */
+    transition: fill 0.3s ease;
+}
+
+
+/* --- STATE: IS-DISABLED --- */
+.swipe-track.is-disabled {
+    opacity: 1; 
+    cursor: not-allowed;
+    background-color: #F0F0F0; 
+}
+.swipe-track.is-disabled .swipe-text-base-layer {
+    color: #A0A0A0; 
+}
+.swipe-track.is-disabled .swipe-handle {
+    background-color: #FFFFFF; 
+    border: none;
+}
+.swipe-track.is-disabled .swipe-handle svg {
+    fill: #BDBDBD; 
+}
+
+/* --- STATE: IS-ACTIVE --- */
+.swipe-track.is-active {
+    background-color: #F0F0F0; /* Light grey track for active state */
+    opacity: 1;
+    cursor: grab;
+}
+.swipe-track.is-active .swipe-text-base-layer {
+    color: #333333; /* Darker text for light gray background when active */
+}
+/* .swipe-text-overlay-layer is always white, shown by .swipe-progress-fill */
+
+.swipe-track.is-active .swipe-handle {
+    background-color: #000000; /* Black handle background */
+    border: none;
+}
+.swipe-track.is-active .swipe-handle svg {
+    fill: #FFFFFF; /* White arrow */
+}
+
+/* --- STATE: IS-COMPLETED --- */
+/* Styles for when swipe is completed (but visually remains active before modal confirmation) */
+/* These styles are largely handled by keeping .is-active and disabling via JS/ARIA */
+/* The .is-completed class itself will not be used to change visual style of swipe track to green */
+
+
+/* Confirmation Modal Styles */
+.confirmation-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex; /* Changed from 'none' initially to flex */
+    align-items: flex-end; /* Align modal to the bottom */
+    justify-content: center; /* Center modal horizontally */
+    z-index: 200;
+    padding: 0; /* Remove padding to allow modal to touch edges */
+}
+
+.confirmation-modal {
+    background-color: #FFFFFF;
+    border-radius: 16px 16px 0 0; /* Rounded top corners */
+    width: 100%;
+    max-width: 480px; /* Match app container max-width */
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.15); /* Shadow upwards */
+    transform: translateY(100%); /* Initial state: off-screen */
+    transition: transform 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Ensures content respects rounded corners */
+}
+
+/* Drag indicator specific to the confirmation modal */
+.confirmation-modal .modal-drag-indicator {
+    width: 36px;
+    height: 4px;
+    background-color: #D1D5DB;
+    border-radius: 2px;
+    margin: 12px auto; /* Centered with vertical margin */
+    flex-shrink: 0;
+}
+
+.confirmation-modal-content-wrapper {
+    padding: 0 24px calc(24px + env(safe-area-inset-bottom)) 24px; /* Content padding, top handled by indicator, bottom has safe area + fixed */
+    text-align: left;
+    overflow-y: auto; /* In case content is too tall */
+}
+
+
+.confirmation-modal-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111111;
+    margin-top: 0;
+    margin-bottom: 32px; /* Increased from 28px */
+    line-height: 1.3;
+}
+
+.confirmation-modal-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 32px; /* Increased from 28px */
+}
+
+.confirmation-modal-item:last-of-type {
+    margin-bottom: 48px; /* Increased from 36px */
+}
+
+.confirmation-modal-item .icon-container {
+    margin-right: 16px; /* Increased */
+    flex-shrink: 0;
+}
+
+.confirmation-modal-item .icon-container svg {
+    width: 36px;  /* Increased */
+    height: 36px; /* Increased */
+    fill: #000000;
+}
+
+.confirmation-modal-item p {
+    font-size: 16px;
+    color: #333333;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.confirmation-modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Space between buttons */
+}
+
+.confirmation-modal-button {
+    padding: 18px 20px; /* Increased vertical padding from 14px */
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s ease;
+}
+
+.confirmation-modal-button.primary {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+.confirmation-modal-button.primary:hover {
+    background-color: #333333;
+}
+
+.confirmation-modal-button.secondary {
+    background-color: #F0F0F0;
+    color: #000000;
+}
+.confirmation-modal-button.secondary:hover {
+    background-color: #E0E0E0;
+}
+
+
+/* Accessibility */
+[role="button"]:not([aria-disabled="true"]):hover,
+[role="button"]:not([aria-disabled="true"]):focus-visible,
+button:not(:disabled):hover,
+button:not(:disabled):focus-visible,
+.support-item:focus-visible { /* Added for support item focus */
+  outline: 2px solid #005fcc;
+  outline-offset: 2px;
+}
+
+body:not(:focus-within) [role="button"]:focus-visible,
+body:not(:focus-within) button:focus-visible,
+body:not(:focus-within) .support-item:focus-visible { /* Added for support item focus */
+    outline: none;
+}
+
+button:focus { /* This is a general focus, might be too broad if we only want focus-visible */
+  outline: 2px solid #005fcc;
+  outline-offset: 2px;
+}
+body:has(#app-container:not(:focus-within)) button:focus {
+    outline: none;
+}
+/* Ensure support-item focus is handled correctly without conflicting with button:focus */
+.support-item:focus {
+    outline: none; /* Default focus ring removed if focus-visible is used */
+}
+.support-item:focus-visible {
+    outline: 2px solid #005fcc;
+    outline-offset: 1px; /* Slightly closer offset for list-like item */
+}
+
+/* Map View Screen Styles */
+#map-view-screen {
+    max-width: 480px;
+    margin: 0 auto;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #F0F0F0; /* Light gray background for the map area */
+    display: flex;
+    flex-direction: column;
+    opacity: 0; /* Initially hidden for fade-in */
+    transition: opacity 0.3s ease-in;
+    overflow: hidden; /* Prevent scrollbars from inner content if not managed */
+    position: relative; /* Added for absolute positioning of top-bar */
+}
+
+.map-view-top-bar {
+    position: absolute;
+    top: 24px; /* Space from top of map-view-screen */
+    left: 16px; /* Space from left edge of map-view-screen */
+    right: 16px; /* Space from right edge of map-view-screen */
+    background-color: #000000;
+    color: #FFFFFF;
+    padding: 18px 16px; /* Increased vertical padding */
+    display: flex;
+    align-items: flex-start; /* MODIFIED: Align items to the start of the cross axis (top) */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3); /* Subtle shadow, as in image */
+    z-index: 10; /* Ensure it's on top of map elements */
+}
+
+.map-view-top-bar-icon-container {
+    margin-right: 12px;
+    display: flex;
+    align-items: center; /* Centers the SVG if the container has more height than the SVG */
+    padding-top: 2px; /* ADDED: To visually align the top of the icon with the top of the first line of text */
+}
+
+.map-view-top-bar-text p {
+    margin: 0;
+    /* line-height: 1.3; Will be overridden by specific classes */
+}
+
+.map-view-address-line1 {
+    font-size: 20px; /* Increased font size */
+    font-weight: 600; /* Bolder text */
+    line-height: 1.2; /* Adjusted line height */
+}
+
+.map-view-address-line2 {
+    font-size: 16px; /* Increased font size */
+    font-weight: 400;
+    color: #E0E0E0; /* Lighter gray color for the second line */
+    line-height: 1.4; /* Adjusted line height for two lines */
+}
+
+.map-view-map-area {
+    flex-grow: 1;
+    position: relative;
+    background-image: url('map_background_image.png'); /* REPLACE 'map_background_image.png' WITH THE ACTUAL PATH TO YOUR MAP IMAGE */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    overflow: hidden; /* Clip map elements */
+    min-height: 300px; /* Ensure map has some visible height */
+    padding-top: 139px; /* Push map content down to avoid overlap with new top-bar. This padding affects child elements, not the background image itself. */
+}
+
+/* Removed styles for .map-view-road, .map-view-location-pin, .map-view-traffic-light, .map-view-poi, .map-view-encounter-tag as they are no longer used */
+
+.map-view-shield-button, .map-view-compass-button, .map-view-navigate-button {
+    position: absolute;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFF;
+}
+
+.map-view-shield-button {
+    bottom: 20px;
+    left: 16px;
+    width: 44px;
+    height: 44px;
+    background-color: #FFFFFF;
+}
+.map-view-shield-button svg path {
+    fill: #2196F3; /* Blue shield icon color from image */
+}
+
+.map-view-compass-button {
+    top: 16px; /* Relative to map-view-map-area (after its padding-top) */
+    right: 16px;
+    width: 44px;
+    height: 44px;
+}
+
+.map-view-navigate-button {
+    bottom: 20px;
+    right: 16px;
+    background-color: #000000;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border-radius: 22px; /* Pill shape */
+    font-size: 16px;
+    font-weight: 500;
+    height: 44px;
+}
+.map-view-navigate-button svg {
+    margin-right: 8px;
+}
+
+
+.map-view-route-summary-bar {
+    background-color: #FFFFFF;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #E0E0E0;
+    border-bottom: 1px solid #E0E0E0;
+    flex-shrink: 0;
+    height: 56px;
+}
+
+.map-view-route-bar-icon {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: #333333;
+}
+.map-view-route-bar-icon svg {
+    display: block;
+}
+
+.map-view-route-time {
+    font-size: 16px;
+    font-weight: 500;
+    color: #000000;
+}
+.map-view-route-bag-icon {
+    margin: 0 4px; /* Space around bag icon */
+}
+.map-view-route-distance {
+    font-size: 16px;
+    font-weight: 400;
+    color: #333333;
+}
+
+.map-view-driver-info-panel {
+    background-color: #FFFFFF;
+    padding: 20px 16px calc(20px + env(safe-area-inset-bottom));
+    flex-shrink: 0;
+}
+
+.map-view-driver-info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.map-view-driver-name {
+    font-size: 26px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0;
+}
+
+.map-view-driver-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.map-view-driver-action-button {
+    background-color: #F0F0F0;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #000000;
+}
+.map-view-driver-action-button:hover {
+    background-color: #E0E0E0;
+}
+
+.map-view-driver-address {
+    font-size: 14px;
+    color: #555555;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.map-view-delivery-type-title,
+.map-view-customer-note-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #000000;
+    margin: 16px 0 4px 0;
+}
+.map-view-delivery-type-detail {
+    font-size: 15px;
+    color: #333333;
+    margin: 0 0 16px 0;
+}
